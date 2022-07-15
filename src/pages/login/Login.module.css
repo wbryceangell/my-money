@@ -1,1 +1,22 @@
-/* styles */
+.loginForm {
+  max-width: 360px;
+  margin: 60px auto;
+  padding: 20px;
+}
+
+.loginForm label {
+  display: block;
+  margin: 30px auto;
+}
+
+.loginForm span {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.loginForm input {
+  padding: 8px 6px;
+  font-size: 1em;
+  color: #777;
+  width: 100%;
+}
