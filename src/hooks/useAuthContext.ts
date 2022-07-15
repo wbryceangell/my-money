@@ -3,7 +3,7 @@ import { AuthContext } from "../context/AuthContext";
 
 export const useAuthContext = () => {
   const context = useContext(AuthContext);
-  if (!context)
+  if (!context || !context.dispatch)
     throw new Error("useAuthContext must be inside an AuthProvider");
-  return context;
+  return context as typeof context & { dispatch: typeof context.dispatch };
 };

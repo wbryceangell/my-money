@@ -1,15 +1,15 @@
 import React, { createContext, Reducer, useReducer } from "react";
 
-type Context<State, Action> = Partial<
-  State & { dispatch: React.Dispatch<Action> }
->;
-type State = {};
-type ActionType = "";
+type Context<State, Action> = State & { dispatch?: React.Dispatch<Action> };
+type State = { user?: firebase.default.User };
+type ActionType = "LOGIN";
 type Action = { type: ActionType; payload?: any };
 
 const authReducer: Reducer<State, Action> = (state, action) => {
   const { type, payload } = action;
   switch (type) {
+    case "LOGIN":
+      return { ...state, user: payload };
     default:
       return state;
   }
