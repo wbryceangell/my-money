@@ -7,11 +7,7 @@ export const useLogin = () => {
   const [error, setError] = useState<Error>();
   const [isPending, setIsPending] = useState(false);
   const { dispatch } = useAuthContext();
-  const login = async (
-    email: string,
-    password: string,
-    displayName: string
-  ) => {
+  const login = async (email: string, password: string) => {
     !isCancelled && setError(undefined);
     !isCancelled && setIsPending(true);
     try {
@@ -20,7 +16,6 @@ export const useLogin = () => {
         password
       );
       if (!userCredential.user) throw new Error("Could not complete login");
-      await userCredential.user.updateProfile({ displayName });
       dispatch({ type: "LOGIN", payload: userCredential.user });
     } catch (e) {
       !isCancelled && setError(e as Error);
