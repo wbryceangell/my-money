@@ -9,7 +9,7 @@ const Login: React.FC = () => {
     e.preventDefault();
     console.log(email, password);
   };
-  
+
   return (
     <form className={loginForm} onSubmit={handleSubmit}>
       <h2>Login</h2>
