@@ -4,7 +4,7 @@ import { auth } from "../firebase/config";
 export const useSignup = () => {
   const [error, setError] = useState<Error>();
   const [isPending, setIsPending] = useState(false);
-  const signUp = async (
+  const signup = async (
     email: string,
     password: string,
     displayName: string
@@ -25,5 +25,5 @@ export const useSignup = () => {
     }
   };
 
-  return { error, isPending, signUp };
+  return { error, isPending, signup };
 };
