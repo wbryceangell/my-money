@@ -6,7 +6,7 @@ type State = { user: firebase.default.User | null; authIsReady: boolean };
 type ActionType = "LOGIN" | "LOGOUT" | "AUTH_IS_READY";
 type Action = { type: ActionType; payload?: any };
 
-const authReducer: Reducer<State, Action> = (state, action) => {
+const reducer: Reducer<State, Action> = (state, action) => {
   const { type, payload } = action;
   switch (type) {
     case "LOGIN":
@@ -25,7 +25,7 @@ export const AuthContext = createContext<Context<State, Action>>(initialState);
 export const AuthProvider: React.FC<React.PropsWithChildren> = ({
   children,
 }) => {
-  const [state, dispatch] = useReducer(authReducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
     const unsub = auth.onAuthStateChanged((user) => {

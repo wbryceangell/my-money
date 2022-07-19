@@ -31,7 +31,7 @@ const TransactionForm: React.FC = () => {
             required
           />
         </label>
-		<button>Add Transaction</button>
+        <button>Add Transaction</button>
       </form>
     </>
   );
