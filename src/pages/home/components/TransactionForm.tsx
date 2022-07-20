@@ -1,11 +1,13 @@
+import styles from "./TransactionForm.module.css";
 import { useEffect, useState } from "react";
-import { useFirestore } from "../../hooks/useFirestore";
+import { useFirestore } from "../../../hooks/useFirestore";
 
 type Props = {
   uid: string;
 };
 
 const TransactionForm: React.FC<Props> = ({ uid }) => {
+  const { transactionForm } = styles;
   const [name, setName] = useState("");
   const [amount, setAmount] = useState("");
   const {
@@ -25,7 +27,7 @@ const TransactionForm: React.FC<Props> = ({ uid }) => {
   }, [success]);
 
   return (
-    <>
+    <div className={transactionForm}>
       <h3>Add a Transaction</h3>
       <form onSubmit={handleSubmit}>
         <label>
@@ -48,7 +50,7 @@ const TransactionForm: React.FC<Props> = ({ uid }) => {
         </label>
         <button>Add Transaction</button>
       </form>
-    </>
+    </div>
   );
 };
 

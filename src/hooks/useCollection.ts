@@ -9,8 +9,8 @@ export const useCollection = (collection: string) => {
     return firestore.collection(collection).onSnapshot(
       (snapshot) => {
         const documents: Array<any> = [];
-        snapshot.docs.forEach(({ id, data }) =>
-          documents.push({ id, ...data() })
+        snapshot.docs.forEach((doc) =>
+          documents.push({ id: doc.id, ...doc.data() })
         );
         setDocuments(documents);
         setError(null);
