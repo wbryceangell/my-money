@@ -1,8 +1,9 @@
+import type firebase from "firebase";
 import React, { Reducer, useEffect, useReducer, useState } from "react";
 import { firestore, timestamp } from "../firebase/config";
 
 type State = {
-  document: firebase.default.firestore.DocumentReference | null;
+  document: firebase.firestore.DocumentReference | null;
   error: Error | null;
   isPending: boolean;
   success: boolean;
@@ -54,9 +55,7 @@ export const useFirestore = (collectionPath: string) => {
   const dispatchIfNotCancelled: React.Dispatch<Action> = (action) =>
     !isCancelled && dispatch(action);
 
-  const addDocument = async (
-    documentData: firebase.default.firestore.DocumentData
-  ) => {
+  const addDocument = async (documentData: firebase.firestore.DocumentData) => {
     dispatchIfNotCancelled({ type: "IS_PENDING" });
     try {
       const createdAt = timestamp.now();

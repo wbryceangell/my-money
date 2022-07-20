@@ -1,3 +1,4 @@
+import type firebase from "firebase";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useCollection } from "../../hooks/useCollection";
 import styles from "./Home.module.css";
@@ -7,7 +8,11 @@ import TransactionList from "./components/TransactionList";
 const Home: React.FC = () => {
   const { container, content, sidebar } = styles;
   const { user } = useAuthContext();
-  const { documents, error } = useCollection("transactions");
+  const { documents, error } = useCollection("transactions", [
+    "uid",
+    "==",
+    (user as firebase.User).uid,
+  ]);
 
   return (
     <div className={container}>
@@ -16,7 +21,7 @@ const Home: React.FC = () => {
         {documents && <TransactionList transactions={documents} />}
       </div>
       <div className={sidebar}>
-        <TransactionForm uid={(user as firebase.default.User).uid} />
+        <TransactionForm uid={(user as firebase.User).uid} />
       </div>
     </div>
   );

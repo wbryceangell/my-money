@@ -1,8 +1,9 @@
+import type firebase from "firebase";
 import React, { createContext, Reducer, useEffect, useReducer } from "react";
 import { auth } from "../firebase/config";
 
 type Context<State, Action> = State & { dispatch?: React.Dispatch<Action> };
-type State = { user: firebase.default.User | null; authIsReady: boolean };
+type State = { user: firebase.User | null; authIsReady: boolean };
 type ActionType = "LOGIN" | "LOGOUT" | "AUTH_IS_READY";
 type Action = { type: ActionType; payload?: any };
 
