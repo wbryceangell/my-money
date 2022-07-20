@@ -8,11 +8,11 @@ import TransactionList from "./components/TransactionList";
 const Home: React.FC = () => {
   const { container, content, sidebar } = styles;
   const { user } = useAuthContext();
-  const { documents, error } = useCollection("transactions", [
-    "uid",
-    "==",
-    (user as firebase.User).uid,
-  ]);
+  const { documents, error } = useCollection(
+    "transactions",
+    ["createdAt", "desc"],
+    ["uid", "==", (user as firebase.User).uid]
+  );
 
   return (
     <div className={container}>
